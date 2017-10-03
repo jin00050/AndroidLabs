@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Lab1</string>
     <string name="hello_message">Hello World!</string>
-    <string name="ButtonText">I\’m a button</string>
+    <string name="ButtonText">I\'m a button</string>
     <string name="text">Login</string>
+    <string name="dialog_message">dont care</string>
+    <string name="dialog_title">dialog_title</string>
+    <string name="OK">OK</string>
+    <string name="cancel">cancel</string>
 </resources>
