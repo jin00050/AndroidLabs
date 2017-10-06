@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
         emailName = prefs.getString("DefaultEmail", "email@domain.com");
         email.setText(emailName);
 
-        Button abt = (Button) findViewById(R.id.button);
+        abt = (Button) findViewById(R.id.button);
         abt.setOnClickListener(new View.OnClickListener() {
 
 

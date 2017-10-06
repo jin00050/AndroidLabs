@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:columnCount="2"
     android:rowCount="2"
-
     tools:context="com.example.admin.androidlabs.ListItemsActivity">
 
     <RadioButton
