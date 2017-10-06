@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class StartActivity extends Activity {
-
     protected static final String ACTIVITY_NAME = "StartActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,36 +27,49 @@ public class StartActivity extends Activity {
                               }
         );
     }
-    public void  onActivityResult(int requestCode, int responseCode, Intent data){
-        if(requestCode == 10){
-        Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");}
 
-        if(requestCode == Activity.RESULT_OK){
+    protected void onActivityResult(int requestCode, int responseCode, Intent data)  {
+        if (requestCode == 10)  {
+            Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
+        }
 
+        if(responseCode==Activity.RESULT_OK){
             String result = data.getStringExtra("Response");
             Toast toast = Toast.makeText(this , result, Toast.LENGTH_LONG);
             toast.show();
-
         }
     }
+
+
+    @Override
     protected void onResume() {
         super.onResume();
         Log.i(ACTIVITY_NAME, "In onResume()");
     }
+
+    @Override
     protected void onStart() {
         super.onStart();
-        Log.i(ACTIVITY_NAME, "In onStart()");
+        Log.i(ACTIVITY_NAME, "In onResume()");
     }
+
+    @Override
     protected void onPause() {
         super.onPause();
         Log.i(ACTIVITY_NAME, "In onPause()");
     }
+
+    @Override
     protected void onStop() {
         super.onStop();
         Log.i(ACTIVITY_NAME, "In onStop()");
     }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
+
 }
+

@@ -1,3 +1,4 @@
+
 package com.example.admin.androidlabs;
 
 import android.app.Activity;
@@ -9,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -17,11 +17,10 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 public class ListItemsActivity extends Activity {
-
     protected static final String ACTIVITY_NAME = "ListItemsActivity";
     protected static final int REQUEST_IMAGE_CAPTURE = 1;
+    ImageButton ib;
     CharSequence text;
-    ImageButton ibt;
     int duration;
 
     @Override
@@ -30,22 +29,23 @@ public class ListItemsActivity extends Activity {
         setContentView(R.layout.activity_list_items);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        ibt  = (ImageButton) findViewById(R.id.imageButton);
-        ibt.setOnClickListener(new View.OnClickListener() {
+        ib = (ImageButton) findViewById(R.id.imageButton);
+        ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
             }
-        } );
-        Switch change = (Switch)findViewById(R.id.switch1);
+        });
+
+        Switch change = (Switch) findViewById(R.id.switch1);
         change.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton switchchange, boolean isChecked) {
 
-                public void onCheckedChanged(CompoundButton switchchange, boolean isChecked) {
-
-                    if (switchchange.isChecked()) {
+                if (switchchange.isChecked()) {
                     text = "Switch is On";
                     duration = Toast.LENGTH_SHORT;
                 } else {
@@ -57,60 +57,68 @@ public class ListItemsActivity extends Activity {
             }
         });
 
-        CheckBox cbx = (CheckBox) findViewById(R.id.checkBox);
-        cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+        CheckBox cb = (CheckBox) findViewById(R.id.checkBox);
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton check, boolean isChecked) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListItemsActivity.this);
                 builder.setMessage(R.string.dialog_message)
                         .setTitle(R.string.dialog_title)
                         .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent resultIntent = new Intent();
-                                resultIntent.putExtra("Response", "Here is my response");
-                                setResult(Activity.RESULT_OK, resultIntent);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-
-            }
-            });
-        }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ibt.setImageBitmap(imageBitmap);
-        }
+    public void onClick(DialogInterface dialog, int id) {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("Response", "Here is my response");
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
+})
+        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
-    protected void onResume() {
+public void onClick(DialogInterface dialog, int id) {
+        dialog.dismiss();
+        }
+        })
+        .show();
+        }
+        });
+        }
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        Bundle extras = data.getExtras();
+        Bitmap imageBitmap = (Bitmap) extras.get("data");
+        ib.setImageBitmap(imageBitmap);
+        }
+        }
+
+@Override
+protected void onResume() {
         super.onResume();
         Log.i(ACTIVITY_NAME, "In onResume()");
-    }
-    protected void onStart() {
+        }
+
+@Override
+protected void onStart() {
         super.onStart();
-        Log.i(ACTIVITY_NAME, "In onStart()");
-    }
-    protected void onPause() {
+        Log.i(ACTIVITY_NAME, "In onResume()");
+        }
+
+@Override
+protected void onPause() {
         super.onPause();
         Log.i(ACTIVITY_NAME, "In onPause()");
-    }
-    protected void onStop() {
+        }
+
+@Override
+protected void onStop() {
         super.onStop();
         Log.i(ACTIVITY_NAME, "In onStop()");
-    }
-    protected void onDestroy() {
+        }
+
+@Override
+protected void onDestroy() {
         super.onDestroy();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
-    }
+        }
 
-
-    }
-
+        }
