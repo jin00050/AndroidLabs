@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">实验课5</string>
+    <string name="app_name">实验课6</string>
     <string name="hello_message">你好</string>
-    <string name="ButtonText">I\’m a button</string>
+    <string name="ButtonText">按钮</string>
     <string name="text">登陆</string>
     <string name="start_chat">开始聊天</string>
     <string name="dialog_message">随便说吧!</string>
     <string name="dialog_title">说点私密话吧!</string>
     <string name="OK">好滴</string>
     <string name="cancel">取消</string>
+    <string name="check_weather">查询天气</string>
 </resources>

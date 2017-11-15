@@ -8,4 +8,9 @@
     <string name="dialog_title">Let us chat!</string>
     <string name="OK">ok</string>
     <string name="cancel">cancel</string>
+    <string name="check_weather">check weather</string>
+
+
+    <string name="connection_error">there is no connection!</string>
+    <string name="xml_error">no xml!</string>
 </resources>
