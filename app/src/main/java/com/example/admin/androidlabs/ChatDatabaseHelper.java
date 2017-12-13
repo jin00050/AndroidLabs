@@ -10,17 +10,15 @@ import android.util.Log;
  */
 public  class ChatDatabaseHelper extends SQLiteOpenHelper {
 
-    public static String DB_Name = "Messages.db";
+    public static String DB_Name = "Messages1.db1";
     public static int DB_version =2;
-    static final String DB_table = "Message_DB";
+    static final String DB_table = "Message_DB1";
     private ChatDatabaseHelper dbHelper;
-    SQLiteDatabase db;
-
     static final String key_RowID = "_id";
     static final String key_message = "MESSAGE";
 
     public ChatDatabaseHelper(Context ctx) {
-        super(ctx, "Messages.db", null,DB_version);
+        super(ctx, "Messages.db1", null,DB_version);
     }
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE " + DB_table +"( _id INTEGER PRIMARY KEY AUTOINCREMENT, MESSAGE text);");
@@ -33,9 +31,19 @@ public  class ChatDatabaseHelper extends SQLiteOpenHelper {
         Log.i("ChatDatabaseHelper", "Calling onUpgrade, oldVersion="+ oldVersion  + "newVersion=" + newVersion);
      }
     @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
+        db.execSQL("DROP TABLE IF EXISTS " + DB_table); //delete what was there previously
+        onCreate(db);
+        Log.i("ChatDatabaseHelper", "Calling onDowngrade, newVersion=" + newVersion + "oldVersion=" + oldVersion);
+    }
+    @Override
     public void onOpen(SQLiteDatabase db)
     {
         Log.i("Database ", "onOpen was called");
     }
 
+    public void deleteItem(String id){
+        getWritableDatabase().execSQL("DELETE FROM " + DB_table + " WHERE " + key_RowID + " = " + id);
+    }
 }
